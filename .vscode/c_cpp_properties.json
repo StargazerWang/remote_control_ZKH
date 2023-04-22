@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "name": "SRC-4526",
+            "includePath": [
+                "${workspaceFolder}/*",
+                "${workspaceFolder}/vendor/827x_ble_remote/**",
+                "${workspaceFolder}/vendor/common/**",
+                "${workspaceFolder}/stack/ble/**",
+                "${workspaceFolder}/proj_lib/**",
+                "${workspaceFolder}/drivers/8278/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/boot/**",
+                "${workspaceFolder}/application",
+                "${workspaceFolder}/application/app/**",
+                "${workspaceFolder}/application/audio/**",
+                "${workspaceFolder}/application/keyboard/**",
+                "${workspaceFolder}/application/print/**",
+                "${workspaceFolder}/application/usbstd/**"
+            ],
+            "defines": [
+                "__PROJECT_8278_BLE_REMOTE__=1",
+                "MCU_STARTUP_8271_RET_32K",
+                "CHIP_TYPE=CHIP_TYPE_8278"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/vendor/827x_ble_remote/app_config.h"
+            ],
+            "compilerPath": "/opt/tc32/bin/tc32-elf-gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "${default}",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
