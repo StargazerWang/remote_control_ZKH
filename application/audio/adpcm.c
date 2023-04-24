@@ -23,18 +23,18 @@
  *  limitations under the License.
  *
  *****************************************************************************/
-#include     "tl_common.h"
-#include     "drivers.h"
-#include    "audio_config.h"
-#include    "adpcm.h"
-#include    "gl_audio.h"
+#include    "tl_common.h"       //包含常用数据类型、宏定义和函数声明
+#include    "drivers.h"         //包含与硬件驱动相关的函数声明
+#include    "audio_config.h"    //包含音频配置参数
+#include    "adpcm.h"           //包含 ADPCM 压缩算法的函数声明
+#include    "gl_audio.h"        //包含音频播放相关的函数声明
 
 
-#if     (TL_AUDIO_MODE & TL_AUDIO_MASK_ADPCM_MODE)                 //Adpcm mode
+#if     (TL_AUDIO_MODE & TL_AUDIO_MASK_ADPCM_MODE)                 //Adpcm mode//对应audio_common.h的34行
 
 
-static const signed char idxtbl[] = { -1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8};
-static const unsigned short steptbl[] = {
+static const signed char idxtbl[] = { -1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8};//索引表（index table）
+static const unsigned short steptbl[] = {                       //步长表（step table）
      7,  8,  9,  10,  11,  12,  13,  14,  16,  17,
      19,  21,  23,  25,  28,  31,  34,  37,  41,  45,
      50,  55,  60,  66,  73,  80,  88,  97,  107, 118,
