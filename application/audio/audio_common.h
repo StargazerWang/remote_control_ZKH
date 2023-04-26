@@ -52,25 +52,25 @@
 //用于在 RCU 项目中配置不同的音频模式。这些宏由多个掩码按位或组成，可以表示不同的编码方式、传输通道和项目类型。
 //每一个宏都以 TL_AUDIO_RCU_ 开头，后面跟着音频编码方式和传输通道的缩写，以及可能的项目类型（即 RCU_PROJECT）。其中最后两个宏还包含了一个名为 DONGLE_TO_STB 的传输通道掩码
 
-//--使用 ADPCM 编码，在 Telink GATT 传输通道上进行音频传输--
+//使用 ADPCM 编码，在 Telink GATT 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_ADPCM_GATT_TLEINK                   (RCU_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_GATT_SERVICE_TELINK_CHANNEL)
 
-//--使用 ADPCM 编码，在 Google GATT 传输通道上进行音频传输--
+//使用 ADPCM 编码，在 Google GATT 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_ADPCM_GATT_GOOGLE                   (RCU_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_GATT_SERVICE_GOOGLE_CHANNEL)
 
-//--使用 ADPCM 编码，在 HID 传输通道上进行音频传输--
+//使用 ADPCM 编码，在 HID 传输通道上进行音频传输--
 #define        TL_AUDIO_RCU_ADPCM_HID                           (RCU_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL)
 
-//--使用 SBC 编码，在 HID 传输通道上进行音频传输--
+//使用 SBC 编码，在 HID 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_SBC_HID                             (RCU_PROJECT | TL_AUDIO_MASK_SBC_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL)
 
-//--使用 ADPCM 编码，在 HID 和 Dongle 到 STB 传输通道上进行音频传输--
+//使用 ADPCM 编码，在 HID 和 Dongle 到 STB 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_ADPCM_HID_DONGLE_TO_STB             (RCU_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL | TL_AUDIO_MASK_DONGLE_TO_STB)
 
-//--使用 SBC 编码，在 HID 和 Dongle 到 STB 传输通道上进行音频传输--
+//使用 SBC 编码，在 HID 和 Dongle 到 STB 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_SBC_HID_DONGLE_TO_STB               (RCU_PROJECT | TL_AUDIO_MASK_SBC_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL | TL_AUDIO_MASK_DONGLE_TO_STB)
 
-//--使用 mSBC 编码，在 HID 传输通道上进行音频传输--
+//使用 mSBC 编码，在 HID 传输通道上进行音频传输
 #define        TL_AUDIO_RCU_MSBC_HID                            (RCU_PROJECT | TL_AUDIO_MASK_MSBC_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL)
 
 //-------------------------------------------------------------------------------------------------------------------------------------
@@ -86,10 +86,10 @@
 //使用ADPCM编码，通过HID服务发送音频数据
 #define        TL_AUDIO_DONGLE_ADPCM_HID                        (DONGLE_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL)
 
-//使用ADPCM编码，通过HID服务发送音频数据
+//使用SBC编码，通过HID服务发送音频数据
 #define        TL_AUDIO_DONGLE_SBC_HID                          (DONGLE_PROJECT | TL_AUDIO_MASK_SBC_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL)
 
-//使用ADPCM编码，通过HID服务发送音频数据
+//使用ADPCM编码，通过HID服务将音频数据从Dongle发送到STB设备
 #define        TL_AUDIO_DONGLE_ADPCM_HID_DONGLE_TO_STB          (DONGLE_PROJECT | TL_AUDIO_MASK_ADPCM_MODE | TL_AUDIO_MASK_HID_SERVICE_CHANNEL | TL_AUDIO_MASK_DONGLE_TO_STB)
 
 //使用SBC编码，通过HID服务将音频数据从Dongle发送到STB设备
@@ -104,3 +104,17 @@
 
 
 #endif /* AUDIO_COMMON_H_ */
+//----------------- RCU -----------------------
+// RCU的全称是“Read-Copy-Update”，是一种用于实现并发性的编程技术。
+// RCU的主要目标是在减少锁使用的同时，保证数据结构的正确性和线程安全性。
+// RCU技术在许多操作系统和数据库中都有广泛应用，它适用于多核心、高吞吐量、低延迟的系统，可以提高系统的性能和伸缩性。
+// RCU通过在读取过程中对数据进行复制，避免了读取时的竞争和锁使用，从而提高了系统的并发性和响应速度。
+// 当需要修改数据时，RCU会创建一个新副本，更新数据后，再将新旧副本进行替换。
+// 这种技术是一种非阻塞算法，能够提高系统的可扩展性和稳定性。
+
+//--------------- DONGLE-----------------------
+// DONGLE的意思是“加密狗”，它是一种硬件设备，可以用于授权和保护软件的安全性。
+// 通常情况下，DONGLE会连接到计算机的USB、串行或并行端口上，并包含一个加密芯片，
+// 用于验证用户许可证或授权码以及确保软件只在授权的计算机上运行。
+// DONGLE还可以提供额外的安全功能，如数据加密和数字签名等。
+// 这种设备通常应用于商业软件、数字内容和系统中，以确保软件合法使用和知识产权的保护。

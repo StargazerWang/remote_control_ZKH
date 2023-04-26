@@ -30,7 +30,7 @@
 
 extern u16 adpcm_sequence_num;      //表示 ADPCM 编码的序列号，即数据包的编号。
 extern int adpcm_predict;           //int adpcm_predict 和 int adpcm_predict_idx：表示 ADPCM 编码器的状态参数。
-extern int adpcm_predict_idx;
+extern int adpcm_predict_idx;       //adpcm 的预测标识
 
 
 void mic_to_adpcm_split (signed short *ps, int len, signed short *pds, int start);  //将从麦克风读取的音频数据进行 ADPCM 压缩，并将结果保存到指定的缓冲区中。
